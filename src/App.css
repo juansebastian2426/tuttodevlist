@@ -1,6 +1,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   height:100vh;
+  z-index: 2;
 }
 * {
   margin:0;
@@ -16,6 +17,36 @@ body {
   height: 100%;
 }
 
+body::before {
+  content: '';
+  display: block;
+  border-radius: 50%;
+  width: 450px;
+  height: 450px;
+  background-size: contain;
+  position: absolute;
+  top: 100px;
+  left: -222px;
+  z-index: 1;
+  background: #d83936;
+}
+
+
+@media (min-width: 1000px) {
+  body::after {
+    content: '';
+    display: block;
+    width: 450px;
+    height: 450px;
+    background-size: contain;
+    position: absolute;
+    bottom: -100px;
+    right: 0;
+    z-index: 1;
+    background: #d83936;
+  }
+}
+
 .app--dark-mode {
   background-color: rgb(59, 59, 59);
   color: #fff;
@@ -25,6 +56,9 @@ body {
   padding: 10px;
   border:1px solid #c7c7c7;
   border-radius: 20px;
+  background-color: #fff;
+  position: relative;
+  z-index: 5;
 }
 
 .app--dark-mode .app__inner {
