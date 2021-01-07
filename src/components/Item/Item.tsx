@@ -21,7 +21,7 @@ export const Item = ({ shape }:Props) => {
     const handleFav = () => shape.isFavorite ? removeWithFavorite(shape) : addWithFavorite(shape);
     
     return (
-        <div className='item'>
+        <div className='item' data-testid='item'>
             <span className='item__id'>{shape.id}</span>
             <img src={getShape(shape.name)} alt='shape' width={50} />
             <p className='item__title'>{ shape.name }</p>
@@ -41,7 +41,7 @@ export const Item = ({ shape }:Props) => {
                     )
                 }
                 <FaEdit size={20} style={{ marginRight: '5px' }} onClick={() => handleOpenModal(shape)} />
-                <IoRemoveCircleSharp size={20} color='red' onClick={() => deleteShapeItem(shape)} />
+                <IoRemoveCircleSharp data-testid='remove-item' size={20} color='red' onClick={() => deleteShapeItem(shape)} />
             </div>
         </div>
     )
