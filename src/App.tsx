@@ -38,7 +38,10 @@ function App() {
         <footer>
           Created by tuttodev © 2021
           <div>
-            <a href='https://tutto-dev.vercel.app/' target="_black">https://tuttodev.dev</a>
+            <a href='https://tuttodev.dev/' target="_black">https://tuttodev.dev</a>
+          </div>
+          <div>
+            <a href='https://github.com/juansebastian2426/tuttodevlist' target="_black">Repo Github</a>
           </div>
         </footer>
       </div>  
