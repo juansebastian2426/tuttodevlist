@@ -39,7 +39,7 @@ export const AddOrUpdateItem = () => {
   }
 
   const shapeListSelected = useMemo(() => {
-    return getAllShapes().map(shapeName => (<option value={shapeName}>{shapeName}</option>))
+    return getAllShapes().map(shapeName => (<option key={shapeName} value={shapeName}>{shapeName}</option>))
   }, []);
 
   const saveChanges = () => {
