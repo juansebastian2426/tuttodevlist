@@ -1,0 +1,37 @@
+.item {
+    border-bottom:1px solid #ccc;
+    padding:10px;
+    position:relative;
+    display:flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item__title {
+    font-size:1.3em;
+    font-weight: bold;
+    margin:0;
+    margin-left:10px;
+}
+
+.item__options {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor:pointer;
+}
+
+.item__id {
+    border:1px solid;
+    display:block;
+    position:absolute;
+    top: 0;
+    left:0;
+    border-radius: 50%;
+    width:20px;
+    height: 20px;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    background-color: #fff;
+}

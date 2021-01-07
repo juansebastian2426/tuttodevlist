@@ -1,14 +1,16 @@
+import { ShapeItem } from '../../models/ShapeItem';
+import { Item } from '../Item/Item';
 
 interface Props {
-  items: []
+  items: ShapeItem[]
 }
 
-
 export const TodoList = ({ items }: Props) => {
-
-  
-
-  return (
-    <h1>TodoList</h1>
-  )
+  return <>
+    <div style={{ height: '300px', overflowY: 'scroll' }}>
+      {items.map(item => (
+        <Item key={item.id} shape={item} />
+      ))}
+    </div>
+  </>
 }
