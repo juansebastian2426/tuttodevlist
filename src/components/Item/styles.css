@@ -35,3 +35,7 @@
     justify-content: center;
     background-color: #fff;
 }
+
+.app--dark-mode .item__id {
+    color: #000;
+}

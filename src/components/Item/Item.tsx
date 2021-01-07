@@ -1,13 +1,14 @@
 import { useContext } from 'react';
-import { ShapeItem } from "../../models/ShapeItem"
-import { Image } from 'react-bootstrap';
+import { ShapeItem } from "../../models/ShapeItem";
 import './styles.css'
 import {
-    FaEdit
+    FaEdit,
+    FaStar,
+    FaRegStar
 } from 'react-icons/fa';
 import { IoRemoveCircleSharp } from "react-icons/io5";
 import { getShape } from '../../utils/getShape';
-import { Context, ContextType } from '../../contexts/ShapeListContext';
+import { Context as ShapeListContext , ContextType as ShapeListContextType  } from '../../contexts/ShapeListContext';
 
 interface Props {
     shape: ShapeItem
@@ -15,15 +16,30 @@ interface Props {
 
 export const Item = ({ shape }:Props) => {
 
-    const { deleteShapeItem, handleOpenModal } = useContext(Context) as ContextType;
-    
+    const { deleteShapeItem, handleOpenModal, addWithFavorite, removeWithFavorite } = useContext(ShapeListContext) as ShapeListContextType;
 
+    const handleFav = () => shape.isFavorite ? removeWithFavorite(shape) : addWithFavorite(shape);
+    
     return (
         <div className='item'>
             <span className='item__id'>{shape.id}</span>
             <img src={getShape(shape.name)} alt='shape' width={50} />
             <p className='item__title'>{ shape.name }</p>
             <div className='item__options'>
+                { shape.isFavorite ? (
+                        <FaStar 
+                            size={20} 
+                            style={{ marginRight: '10px', color: '#d83936' }}
+                            onClick={() => handleFav()}
+                        />
+                    ) : (
+                        <FaRegStar 
+                            size={20} 
+                            style={{ marginRight: '10px' }} 
+                            onClick={() => handleFav()}
+                        />
+                    )
+                }
                 <FaEdit size={20} style={{ marginRight: '5px' }} onClick={() => handleOpenModal(shape)} />
                 <IoRemoveCircleSharp size={20} color='red' onClick={() => deleteShapeItem(shape)} />
             </div>

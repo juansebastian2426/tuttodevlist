@@ -12,7 +12,9 @@ export interface ContextType {
     handleCloseModal: () => void,
     handleOpenModal: (item?: ShapeItem) => void,
     handleSearch: (word: string) => void,
-    wordToSearch: string
+    wordToSearch: string,
+    addWithFavorite: (item: ShapeItem) => void,
+    removeWithFavorite: (item: ShapeItem) => void
 }
 
 export const Context = createContext<ContextType | null>(null);
@@ -36,13 +38,11 @@ export const Provider = ({ children }: Props) => {
         setShapeItems(prev => prev.filter(x => x.id !== item.id));
         setShapeItemsFiltered(prev => prev.filter(x => x.id !== item.id));
     }
-
     const addShapeItem = (item: ShapeItem) => {
         setShapeItems(prev => [...prev, { name: item.name, id: prev.length + 1 }]);
         setShapeItemsFiltered(prev => [...prev, { name: item.name, id: prev.length + 1 }]);
         reset();
     }
-
     const updateShapeItem = (item: ShapeItem) => {
         setShapeItems(prev => prev.map(x => {
             if (x.id === item.id) {
@@ -61,6 +61,48 @@ export const Provider = ({ children }: Props) => {
         reset();
     }
 
+    const addWithFavorite = (item: ShapeItem) => {
+        setShapeItems(prev => {
+            return prev.map(x => {
+                if (x.id === item.id) {
+                    return { ...x, isFavorite: true };
+                }
+
+                return x;
+            });
+        });
+        setShapeItemsFiltered(prev => {
+            return prev.map(x => {
+                if (x.id === item.id) {
+                    return { ...x, isFavorite: true };
+                }
+
+                return x;
+            });
+        });
+    }
+
+    const removeWithFavorite = (item: ShapeItem) => {
+        setShapeItems(prev => {
+            return prev.map(x => {
+                if (x.id === item.id) {
+                    return { ...x, isFavorite: false };
+                }
+
+                return x;
+            });
+        });
+        setShapeItemsFiltered(prev => {
+            return prev.map(x => {
+                if (x.id === item.id) {
+                    return { ...x, isFavorite: false };
+                }
+
+                return x;
+            });
+        });
+    }
+
     // handlers
     const handleCloseModal = () => {
         setShapeItemSelectedForUpdate(null);
@@ -72,7 +114,6 @@ export const Provider = ({ children }: Props) => {
         setShowModal(true);
         //reset();
     }
-
     const handleSearch = (word: string) => {
         setWordToSearch(word);
 
@@ -101,6 +142,8 @@ export const Provider = ({ children }: Props) => {
         shapeItemsFiltered,
         handleSearch,
         wordToSearch,
+        addWithFavorite,
+        removeWithFavorite,
     }
 
     return (

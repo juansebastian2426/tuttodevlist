@@ -1,4 +1,5 @@
 export interface ShapeItem {
   id?: number,
-  name: string
+  name: string,
+  isFavorite?: boolean
 }
